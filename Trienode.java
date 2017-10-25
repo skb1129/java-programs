@@ -4,7 +4,7 @@ class Node {
     Node ch[];
     boolean eow;
     public Node(){
-        ch = new Node[26];
+        ch = new Node[128];
         eow = false;
     }
 }
@@ -17,18 +17,18 @@ class Trie {
     public void insert(String s){
         Node cur = root;
         for(char ch : s.toCharArray()){
-            if(cur.ch[ch-97] == null)
-                cur.ch[ch-97] = new Node();
-            cur = cur.ch[ch-97];
+            if(cur.ch[ch] == null)
+                cur.ch[ch] = new Node();
+            cur = cur.ch[ch];
         }
         cur.eow = true;
     }
     public boolean search(String s){
         Node cur = root;
         for(char ch : s.toCharArray()){
-            if(cur.ch[ch-97] == null)
+            if(cur.ch[ch] == null)
                 return false;
-            cur = cur.ch[ch-97];
+            cur = cur.ch[ch];
         }
         if(cur.eow == true)
             return true;
