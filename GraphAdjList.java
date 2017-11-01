@@ -26,6 +26,22 @@ public class GraphAdjList {
         }
     }
 
+	void DFSUtil(int v,boolean visited[]) {
+        visited[v] = true;
+        System.out.print(v+" ");
+        Iterator<Integer> i = adjLists[v].listIterator();
+        while (i.hasNext()){
+            int n = i.next();
+            if (!visited[n])
+                DFSUtil(n, visited);
+        }
+    }
+
+    void DFS(int v) {
+        boolean visited[] = new boolean[vertices];
+        DFSUtil(v, visited);
+    }
+
 	void print() {
 		for(int i=0 ; i<vertices; i++)
 			System.out.println(i + " : " + adjLists[i]);
@@ -40,5 +56,6 @@ public class GraphAdjList {
 		g.addEdge(2, 3);
 		g.removeEdge(0,1);
 		g.print();
+		g.DFS(0);
     }
 }
