@@ -26,20 +26,15 @@ public class GraphAdjList {
         }
     }
 
-	void DFSUtil(int v,boolean visited[]) {
-        visited[v] = true;
-        System.out.print(v+" ");
-        Iterator<Integer> i = adjLists[v].listIterator();
-        while (i.hasNext()){
-            int n = i.next();
-            if (!visited[n])
-                DFSUtil(n, visited);
+	void DFS(int s,boolean visited[]) {
+        visited[s] = true;
+        System.out.print(s+" ");
+        Iterator<Integer> it = adjLists[s].listIterator();
+        while(it.hasNext()){
+            int n = it.next();
+            if(!visited[n])
+                DFS(n, visited);
         }
-    }
-
-    void DFS(int v) {
-        boolean visited[] = new boolean[vertices];
-        DFSUtil(v, visited);
     }
 
 	void print() {
@@ -48,14 +43,16 @@ public class GraphAdjList {
 	}
 
     public static void main(String args[]) {
-        GraphAdjList g = new GraphAdjList(4);
+        GraphAdjList g = new GraphAdjList(6);
 		g.addEdge(0, 1);
-		g.addEdge(0, 2);
+		g.addEdge(0, 5);
 		g.addEdge(1, 2);
-		g.addEdge(1, 0);
+		g.addEdge(1, 4);
 		g.addEdge(2, 3);
-		g.removeEdge(0,1);
+		g.addEdge(4, 3);
+		g.addEdge(5, 4);
 		g.print();
-		g.DFS(0);
+		boolean visited[] = new boolean[g.vertices];
+		g.DFS(0,visited);
     }
 }
