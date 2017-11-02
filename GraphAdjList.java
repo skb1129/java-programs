@@ -37,6 +37,26 @@ public class GraphAdjList {
         }
     }
 
+	void BFS() {
+		int s = 0;
+		boolean visited[] = new boolean[vertices];
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+        visited[s]=true;
+        queue.add(s);
+        while(queue.size() != 0){
+            s = queue.poll();
+            System.out.print(s+" ");
+            Iterator<Integer> it = adjLists[s].listIterator();
+            while(it.hasNext()){
+                int n = it.next();
+                if(!visited[n]){
+                    visited[n] = true;
+                    queue.add(n);
+                }
+            }
+        }
+	}
+
 	void print() {
 		for(int i=0 ; i<vertices; i++)
 			System.out.println(i + " : " + adjLists[i]);
@@ -52,7 +72,10 @@ public class GraphAdjList {
 		g.addEdge(4, 3);
 		g.addEdge(5, 4);
 		g.print();
+		System.out.println();
 		boolean visited[] = new boolean[g.vertices];
 		g.DFS(0,visited);
+		System.out.println();
+		g.BFS();
     }
 }
