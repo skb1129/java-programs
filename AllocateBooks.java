@@ -22,9 +22,11 @@ public class AllocateBooks {
 			alloted_n.clear();
 			alloted_n.add(0);
 			for (i = 0, j = 0; i < n && j < st; i++) {
-				if ((alloted_n.get(j) + books.get(i)) <= mid)
+				if (alloted_n.get(j) == 0) {
+					alloted_n.add(j, books.get(i));
+				} else if ((alloted_n.get(j) + books.get(i)) <= mid) {
 					alloted_n.add(j, alloted_n.get(j) + books.get(i));
-				else {
+				} else {
 					j++;
 					i--;
 					alloted_n.add(j, 0);
@@ -34,9 +36,11 @@ public class AllocateBooks {
 				alloted.clear();
 				alloted.addAll(alloted_n);
 				r = mid - 1;
-			} else
-				l = mid;
-
+			} else if (j < st) {
+				r = mid - 1;
+			} else {
+				l = mid + 1;
+			}
 			mid = (l + r) / 2;
 		}
 		System.out.println(Collections.max(alloted));
