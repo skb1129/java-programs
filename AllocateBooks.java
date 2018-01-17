@@ -14,8 +14,11 @@ public class AllocateBooks {
 		int st = scan.nextInt();
 		ArrayList<Integer> alloted_n = new ArrayList<Integer>();
 		ArrayList<Integer> alloted = new ArrayList<Integer>();
-		mid = (l + r) / st;
+		mid = (l + r) / 2;
 		while (l < mid && r > mid) {
+			System.out.println(l);
+			System.out.println(mid);
+			System.out.println(r);
 			alloted_n.clear();
 			alloted_n.add(0);
 			for (i = 0, j = 0; i < n && j < st; i++) {
@@ -34,7 +37,7 @@ public class AllocateBooks {
 			} else
 				l = mid;
 
-			mid = (l + r) / st;
+			mid = (l + r) / 2;
 		}
 		System.out.println(Collections.max(alloted));
 		scan.close();
